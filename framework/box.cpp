@@ -2,10 +2,12 @@
 #include <math.h>
 
 Box::Box ():
+    Shape(),
     min_{0,0,0},
     max_{0,0,0} {}
 
-Box::Box (glm::vec3 const& min, glm::vec3 const& max):
+Box::Box (glm::vec3 const& min, glm::vec3 const& max,std::string const& name, Color const& col):
+    Shape(name, col),
     min_{min},
     max_{max} {}
 

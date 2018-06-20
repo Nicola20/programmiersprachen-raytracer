@@ -8,7 +8,7 @@ class Box: public Shape {
 
     public:
     Box ();
-    Box (glm::vec3 const& min, glm::vec3 const& max);
+    Box (glm::vec3 const& min, glm::vec3 const& max,std::string const& name, Color const& col);
     double area() const override;  //calculates the surface
     double volume() const override;  //calculates the volume
     glm::vec3 getMax() const;
