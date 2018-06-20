@@ -2,10 +2,12 @@
 #include <math.h>
 
 Sphere::Sphere ():
+    Shape(),
     center_{0,0,0},
     radius_{1} {}
 
-Sphere::Sphere (glm::vec3 const& c, double r):
+Sphere::Sphere (glm::vec3 const& c, double r,std::string const& name, Color const& col):
+    Shape(name, col),
     center_{c},
     radius_{r} {}
 
