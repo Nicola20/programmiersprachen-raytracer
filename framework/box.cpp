@@ -1,25 +1,25 @@
 #include "box.hpp"
 #include <math.h>
 
-Box ():
+Box::Box ():
     min_{0,0,0},
     max_{0,0,0} {}
 
-Box(glm::vec3 min, glm::vec3 max):
+Box::Box (glm::vec3 const& min, glm::vec3 const& max):
     min_{min},
     max_{max} {}
 
-glm::vec3 Box::getMin(){
+glm::vec3 Box::getMin() const{
     return min_;
 }
 
-double Box::getMax() {
+glm::vec3 Box::getMax() const {
     return max_;
 }
 
 //calculates the surface
-double Box::area() const override {
-    double a = min_.z + max_.z;  //diference on z-axsis; + because max_ has a negative value
+double Box::area() const {
+    double a = max_.z - min_.z;  //diference on z-axsis; + because max_ has a negative value
     double b = max_.y - min_.y;  //diference on y axsis
     double c = max_.x - min_.x;  //diference on x axis
 
@@ -28,8 +28,8 @@ double Box::area() const override {
 }
 
 //calculates the volume
-double Box::volume() const override {
-    double a = min_.z + max_.z;  //diference on z-axsis; + because max_ has a negative value
+double Box::volume() const {
+    double a = max_.z - min_.z;  //diference on z-axsis; + because max_ has a negative value
     double b = max_.y - min_.y;  //diference on y axsis
     double c = max_.x - min_.x;  //diference on x axis
 
