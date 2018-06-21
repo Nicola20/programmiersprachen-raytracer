@@ -27,4 +27,10 @@ double Sphere::area() const{
 //calculates the volume
 double Sphere::volume() const {
     return (4*M_PI*pow(radius_,2));
+}
+
+std::ostream& Sphere::print(std::ostream& os) const {
+    Shape::print(os);
+    os << "Radius: " << radius_ << ",\nCenter point: (" << center_.x << "," << center_.y << "," << center_.z << ") \n \n";
+    return os;
 }  

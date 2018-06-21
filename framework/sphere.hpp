@@ -13,6 +13,7 @@ class Sphere: public Shape {
     double volume() const override;  //calculates the volume
     glm::vec3 getCenter() const;
     double getRadius() const;
+    std::ostream& print(std::ostream& os) const override;
 
     private:
     glm::vec3 center_;
