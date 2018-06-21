@@ -12,6 +12,8 @@ class Shape {
     Shape();
     Shape(std::string const& name, Color const& col);
     virtual std::ostream& print(std::ostream& os) const;
+    std::string getName() const;
+    Color getColor() const;
 
     protected:
     std::string name_;
@@ -19,4 +21,5 @@ class Shape {
 };
 
 std::ostream& operator<< (std::ostream& os, Shape const& s);
+
 #endif // SHAPE_HPP
