@@ -78,7 +78,39 @@ TEST_CASE ("box_volume","[volume]")
 { 
   Box b1 {glm::vec3{1,1,1}, glm::vec3{3,8,3}, "francine", Color{1.0f, 1.0f, 1.0f}};
   REQUIRE (b1.volume() == 64);
+}  
+
+//To add: ostream<< , print,
+TEST_CASE ("sphere_getter_shape","[shape_getter]")
+{ 
+  Sphere shapie {glm::vec3{1,1,1}, 4.0,"francine", Color{1.0f, 1.0f, 1.0f}};
+  REQUIRE (shapie.getName() == "francine");
+  REQUIRE (shapie.getColor().r == 1.0f);
+  REQUIRE (shapie.getColor().g == 1.0f);
+  REQUIRE (shapie.getColor().b == 1.0f);
+}  
+
+TEST_CASE ("box_getter_shape","[shape_getter]")
+{ 
+  Box boxie {glm::vec3{1,1,1}, glm::vec3{2,5,7},"francine", Color{1.0f, 1.0f, 1.0f}};
+  REQUIRE (boxie.getName() == "francine");
+  REQUIRE (boxie.getColor().r == 1.0f);
+  REQUIRE (boxie.getColor().g == 1.0f);
+  REQUIRE (boxie.getColor().b == 1.0f);
 } 
+
+TEST_CASE ("sphere_print","[print]")
+{ 
+  Sphere shapie {glm::vec3{1,1,1}, 4.0,"shapie", Color{1.0f, 1.0f, 1.0f}};
+  std::cout << shapie;
+}  
+
+TEST_CASE ("box_print","[print]")
+{ 
+  Box boxie {glm::vec3{1,1,1}, glm::vec3{2,5,7},"francine", Color{1.0f, 1.0f, 1.0f}};
+  std::cout << boxie;
+}  // working until here
+
 
 
 int main(int argc, char *argv[])
