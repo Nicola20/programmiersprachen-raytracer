@@ -38,3 +38,9 @@ double Box::volume() const {
     return 2*(a*b + b*c + a*c);
 
 } 
+
+std::ostream& Box::print(std::ostream& os) const {
+    Shape::print(os);
+    os << "Vector max_: (" << max_.x << "," << max_.y << "," << max_.z << "), \n" << "Vector min_: (" << min_.x << "," << min_.y << "," << min_.z << ") \n \n";
+    return os;
+}
