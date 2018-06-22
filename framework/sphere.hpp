@@ -3,6 +3,7 @@
 
 #include <glm/vec3.hpp>
 #include "shape.hpp"
+#include "ray.hpp"
 
 class Sphere: public Shape {
 
@@ -14,6 +15,7 @@ class Sphere: public Shape {
     glm::vec3 getCenter() const;
     double getRadius() const;
     std::ostream& print(std::ostream& os) const override;
+    bool intersect (Ray const& ray, float& distance) const;
 
     private:
     glm::vec3 center_;
