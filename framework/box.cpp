@@ -2,14 +2,22 @@
 #include <math.h>
 
 Box::Box ():
-    Shape(),
+    Shape::Shape(),
     min_{0,0,0},
-    max_{0,0,0} {}
+    max_{0,0,0} {
+        std::cout << "ctor of derived class Box \n";
+    }
 
 Box::Box (glm::vec3 const& min, glm::vec3 const& max,std::string const& name, Color const& col):
-    Shape(name, col),
+    Shape::Shape(name, col),
     min_{min},
-    max_{max} {}
+    max_{max} {
+        std::cout << "ctor of derived class Box \n";
+    }
+
+Box::~Box(){
+    std::cout << "dtor of derived class Box \n";
+}
 
 glm::vec3 Box::getMin() const{
     return min_;

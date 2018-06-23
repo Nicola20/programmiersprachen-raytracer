@@ -16,6 +16,8 @@ class Sphere: public Shape {
     double getRadius() const;
     std::ostream& print(std::ostream& os) const override;
     bool intersect (Ray const& ray, float& distance) const;
+    ~Sphere() override;
+    //~Sphere();
 
     private:
     glm::vec3 center_;

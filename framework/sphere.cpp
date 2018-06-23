@@ -2,14 +2,22 @@
 #include <math.h>
 
 Sphere::Sphere ():
-    Shape(),
+    Shape::Shape(),
     center_{0,0,0},
-    radius_{1} {}
+    radius_{1} {
+        std::cout << "ctor of derived class Sphere \n";
+    }
 
 Sphere::Sphere (glm::vec3 const& c, double r,std::string const& name, Color const& col):
-    Shape(name, col),
+    Shape::Shape(name, col),
     center_{c},
-    radius_{r} {}
+    radius_{r} {
+        std::cout << "ctor of derived class Sphere \n";
+    }
+
+Sphere::~Sphere(){
+    std::cout << "dtor of derived class Sphere \n";
+}
 
 glm::vec3 Sphere::getCenter() const{
     return center_;

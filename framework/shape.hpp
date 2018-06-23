@@ -14,6 +14,8 @@ class Shape {
     virtual std::ostream& print(std::ostream& os) const;
     std::string getName() const;
     Color getColor() const;
+    virtual ~Shape();
+    //~Shape();
 
     protected:
     std::string name_;
