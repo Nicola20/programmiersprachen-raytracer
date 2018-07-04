@@ -1,0 +1,86 @@
+#ifndef SCENE_HPP
+#define SCENE_HPP
+
+#include "shape.hpp"
+#include <ifstream>
+#include <string>
+
+struct Scene {
+
+};
+ void SDFFileLoader(std::string const& fileIn) const {  //Frage: wie genau increase ich die linien und lese von genau dieser Linie etwas?
+
+     std::ifstream file;
+     std::string line;
+     file.open(fileIn);
+
+     if (file.is_open()){
+            while(std::getline(file,line)){     //while file has lines
+            std::stringstream ss;
+            std::string keyword;
+
+            ss<<line;               //add stringobject first line
+            ss>>keyword;            //read ffirst word
+
+            if(keyword == "define"){
+                ss>>keyword;        //read next word
+
+                if(keyword == "material"){
+
+                    Material mat;
+
+                    ss>>mat.name_;
+
+                    ss>> mat.ka_.r;
+                    ss>> mat.ka_.g;
+                    ss>> mat.ka_.b;
+                    ss>> mat.kd_.r;
+                    ss>> mat.kd_.g;
+                    ss>> mat.kd_.b;
+                    ss>> mat.ks_.r;
+                    ss>> mat.ks_.g;
+                    ss>> mat.ks_.b;
+
+                    ss>> mat.m_;
+                     //wie genau soll jetzt neues objekt erschaffen werden?
+                }
+
+                if(keyword == "shape"){
+                    //ss<<line;     
+                    ss>>keyword;
+                    if(keyword == "box"){
+                        std::string bname;
+                        glm::vec3 bmin;
+                        glm::vec3 bmax;
+                        ss>> bname;
+                        ss>> bmin.x;
+                        ss>> bmin.y;
+                        ss>> bmin.z;
+                        ss>> bmax.x;
+                        ss>> bmax.y;
+                        ss>> bmax.z;
+                        //Material
+                        //Box b {Material, bname, bmin, bmax};
+                    }
+                    if(keyword == "sphere"){
+                        std::string sname;
+                        glm::vec3 scenter;
+                        float sradius;
+                        ss>> sname;
+                        ss>> scenter.x; 
+                        ss>> scenter.y; 
+                        ss>> scenter.z;
+                        ss>> sradius;
+                        //Material
+                        //Sphere s {Material, sname, scenter, sradius}; 
+                    }
+                    
+                }
+            }
+        file.close(); //
+}
+     }
+
+ }
+#endif
+
