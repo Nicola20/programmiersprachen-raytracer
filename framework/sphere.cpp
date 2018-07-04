@@ -14,6 +14,13 @@ Sphere::Sphere (glm::vec3 const& c, double r,std::string const& name, Color cons
     radius_{r} {
         std::cout << "ctor of derived class Sphere \n";
     }
+    
+Sphere (glm:: vec3 const& c, double r, std::string const& name, std::shared_ptr<Material> const& material):
+    Shape::Shape(name, material),
+    center_{c},
+    radius_{r} {
+        std::cout << "ctor of derived class Sphere \n";
+    }
 
 Sphere::~Sphere(){
     std::cout << "dtor of derived class Sphere \n";
@@ -43,6 +50,6 @@ std::ostream& Sphere::print(std::ostream& os) const {
     return os;
 } 
 
-bool Sphere::intersect(Ray const& ray, float& distance) const{
+bool Sphere::intersect(Ray const& ray, float& distance) const{  //distanz ist von origin bis zum Schnittpunkt und wird mit der funktion überschrieben/neu berechnet
     return (glm::intersectRaySphere(ray.origin_, ray.direction_, center_, radius_*radius_, distance));
 } 

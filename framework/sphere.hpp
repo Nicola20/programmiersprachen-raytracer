@@ -9,13 +9,14 @@ class Sphere: public Shape {
 
     public:
     Sphere ();
+    Sphere (glm:: vec3 const& c, double r, std::string const& name, std::shared_ptr<Material> const& material);
     Sphere (glm:: vec3 const& c, double r, std::string const& name, Color const& col);
     double area() const override;  //calculates the surface
     double volume() const override;  //calculates the volume
     glm::vec3 getCenter() const;
     double getRadius() const;
     std::ostream& print(std::ostream& os) const override;
-    bool intersect (Ray const& ray, float& distance) const;
+    bool intersect (Ray const& ray, float& t) const override;
     ~Sphere() override;
     //~Sphere();
 
