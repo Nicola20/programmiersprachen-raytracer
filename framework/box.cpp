@@ -1,20 +1,20 @@
 #include "box.hpp"
 #include <math.h>
-
+/*
 Box::Box ():
     Shape::Shape(),
     min_{0,0,0},
     max_{0,0,0} {
         std::cout << "ctor of derived class Box \n";
-    }
-
+    }*/
+/*
 Box::Box (glm::vec3 const& min, glm::vec3 const& max,std::string const& name, Color const& col):
     Shape::Shape(name, col),
     min_{min},
     max_{max} {
         std::cout << "ctor of derived class Box \n";
     }
-
+*/
 Box (glm::vec3 const& min, glm::vec3 const& max,std::string const& name, std::shared_ptr<Material> const& material):
     Shape::Shape(name, material),
     min_{min},
@@ -53,12 +53,12 @@ double Box::volume() const {
     return 2*(a*b + b*c + a*c);
 
 } 
-
+/*
 std::ostream& Box::print(std::ostream& os) const {
     Shape::print(os);
     os << "Vector max_: (" << max_.x << "," << max_.y << "," << max_.z << "), \n" << "Vector min_: (" << min_.x << "," << min_.y << "," << min_.z << ") \n \n";
     return os;
-}
+}*/
 
 bool Box::intersect (Ray const& ray, float& t) const {  
     float tx1 = (min_.x - ray.origin_.x)/ray.direction_.x;
