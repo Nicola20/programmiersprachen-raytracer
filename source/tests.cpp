@@ -5,11 +5,12 @@
 #include "sphere.hpp"
 #include "shape.hpp"
 #include "ray.hpp"
+#include "material.hpp"
 #include <glm/glm.hpp>
 #include <glm/gtx/intersect.hpp>
 
 
-
+/*
 TEST_CASE ("sphere_default_constructor","[default]")
 {
   std::cout << "--------------------------------------------- \n";
@@ -168,7 +169,7 @@ TEST_CASE ("intersect_ray_sphere","[intersect]")
     float sphere_radius {1.0f};
 
     float distance = 0.0f;  //welche distanz genau ist das?
-    auto result = glm::intersectRaySphere(
+    auto result = glm::intersectRaySphere(  //hierrauf testen auf bool
         ray_origin, ray_direction, sphere_center, 
         sphere_radius*sphere_radius, // squared radius !!!
         distance);
@@ -178,6 +179,42 @@ TEST_CASE ("intersect_ray_sphere","[intersect]")
 
     REQUIRE (distance == Approx(4.0f));
     REQUIRE (s1.intersect(ray1,distance) == true);
+
+  //Test 1
+  //Ray
+  glm::vec3 origin {2.0};
+  glm::vec3 direction {0.0, 0.0, 1.0};
+  Ray r {origin, direction};
+
+  //Sphere
+  glm::vec3 g {2.0f};
+  Color c {0.0f, 0.0f, 0.0f};       
+  std::string st = "Sphere";
+  Sphere s {g, 4.0f, st, c}; 
+
+  float dis {0.0};
+
+  auto res = s.intersect(r,dis);
+
+  REQUIRE(dis == 4.0f); 
+
+  //Test 2
+  //Ray
+  glm::vec3 orig {0.0, 3.0, 0.0};
+  glm::vec3 direc {0.0, 0.0, 2.0};
+  Ray r2 {orig, direc};
+
+  //Sphere
+  glm::vec3 h {0.0f};
+  Color c2 {0.0f, 0.0f, 0.0f};      
+  std::string st2 = "Sphere";
+  Sphere s2 {h, 2.0f, st2, c2}; 
+
+  float dis2 {0.0};
+
+  auto res2 = s2.intersect(r2,dis2);
+
+REQUIRE(dis2 == 0.0f);
 
     std::cout << "--------------------------------------------- \n";
 }  
@@ -197,7 +234,18 @@ TEST_CASE ("ctor_and_dtor", "[5.8")
     delete s1;
     delete s2;
     std::cout << "--------------------------------------------- \n";
-}  
+}  //working until here
+
+TEST_CASE ("material_ostream", "[6.3]")
+{
+    std::cout << "--------------------------------------------- \n";
+    Material m {"Manni", Color{1.9f, 1.0f, 1.4f}, Color{1.0f, 1.0f, 1.0f}, Color{1.9f, 1.9f, 1.9f}, 4.0f};
+    std::cout << m;
+
+    std::cout << "--------------------------------------------- \n";
+} */
+
+
 
 int main(int argc, char *argv[])
 {
