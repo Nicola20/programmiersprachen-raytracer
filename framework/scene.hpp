@@ -4,15 +4,21 @@
 #include "shape.hpp"
 #include <ifstream>
 #include <string>
+#include <vector>
+#include <map>
+#include <set>
+#include <algorithm>
 
 struct Scene {
 
+
 };
- void SDFFileLoader(std::string const& fileIn) const {  //Frage: wie genau increase ich die linien und lese von genau dieser Linie etwas?
+ std::vector SDFFileLoader(std::string const& fileIn) const {  //Frage: wie genau increase ich die linien und lese von genau dieser Linie etwas?
 
      std::ifstream file;
      std::string line;
      file.open(fileIn);
+     std::vector<std::shared_ptr<Material>> vec;
 
      if (file.is_open()){
             while(std::getline(file,line)){     //while file has lines
@@ -42,7 +48,8 @@ struct Scene {
                     ss>> mat.ks_.b;
 
                     ss>> mat.m_;
-                     //wie genau soll jetzt neues objekt erschaffen werden?
+                    std::make_shared<Material> (mat);
+                    vec.push_back(std::move();
                 }
 
                 if(keyword == "shape"){
@@ -52,6 +59,7 @@ struct Scene {
                         std::string bname;
                         glm::vec3 bmin;
                         glm::vec3 bmax;
+                        Material mat;
                         ss>> bname;
                         ss>> bmin.x;
                         ss>> bmin.y;
@@ -59,27 +67,29 @@ struct Scene {
                         ss>> bmax.x;
                         ss>> bmax.y;
                         ss>> bmax.z;
-                        //Material
-                        //Box b {Material, bname, bmin, bmax};
+                        ss>>mat;
+                        Box b {bmin, bmax, bname, mat};
                     }
                     if(keyword == "sphere"){
                         std::string sname;
                         glm::vec3 scenter;
                         float sradius;
+                        Material mat;
                         ss>> sname;
                         ss>> scenter.x; 
                         ss>> scenter.y; 
                         ss>> scenter.z;
                         ss>> sradius;
-                        //Material
-                        //Sphere s {Material, sname, scenter, sradius}; 
+                        ss>> mat;
+                        Sphere s {scenter, sradius, sname, mat}; 
                     }
                     
                 }
             }
-        file.close(); //
-}
+        file.close(); 
+       }
      }
+     return vec;
 
  }
 #endif

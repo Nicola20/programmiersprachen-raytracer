@@ -6,15 +6,15 @@ Box::Box ():
     min_{0,0,0},
     max_{0,0,0} {
         std::cout << "ctor of derived class Box \n";
-    }*/
-/*
+    }
+
 Box::Box (glm::vec3 const& min, glm::vec3 const& max,std::string const& name, Color const& col):
     Shape::Shape(name, col),
     min_{min},
     max_{max} {
         std::cout << "ctor of derived class Box \n";
-    }
-*/
+    }*/
+
 Box (glm::vec3 const& min, glm::vec3 const& max,std::string const& name, std::shared_ptr<Material> const& material):
     Shape::Shape(name, material),
     min_{min},
@@ -53,14 +53,14 @@ double Box::volume() const {
     return 2*(a*b + b*c + a*c);
 
 } 
-/*
+
 std::ostream& Box::print(std::ostream& os) const {
     Shape::print(os);
     os << "Vector max_: (" << max_.x << "," << max_.y << "," << max_.z << "), \n" << "Vector min_: (" << min_.x << "," << min_.y << "," << min_.z << ") \n \n";
     return os;
-}*/
+}
 
-bool Box::intersect (Ray const& ray, float& t) const {  
+bool Box::intersect (Ray const& ray) const {  
     float tx1 = (min_.x - ray.origin_.x)/ray.direction_.x;
     float tx2 = (max_.x - ray.origin_.x)/ray.direction_.x;
 
@@ -69,7 +69,7 @@ bool Box::intersect (Ray const& ray, float& t) const {
 
     float tz1 = (min_.z - ray.origin_.z)/ray.direction_.z;
     float tz2 = (max_.z - ray.origin_.z)/ray.direction_.z;
-
+   /*
     float tfarx = std::max(tx1, tx2);
     float tnearx = std::min(tx1, tx2);
 
@@ -91,5 +91,24 @@ bool Box::intersect (Ray const& ray, float& t) const {
     }
     //Eigentlichen Schnittpunkt berechnen
      float distance = std::abs(tnear);
-    return true;
+    return true;*/
+    float tmin = max(max(min(tx1, tx2), min(ty1, ty2)), min(tz1, tz2));
+    float tmax = min(min(max(tx1, tx2), max(ty1, ty2)), max(tz1, tz2));
+
+// if tmax < 0, ray (line) is intersecting AABB, but the whole AABB is behind us
+if (tmax < 0)
+{
+    //t = tmax;
+    return false;
+}
+
+// if tmin > tmax, ray doesn't intersect AABB
+if (tmin > tmax)
+{
+    //t = tmax;
+    return false;
+}
+
+t = tmin;
+return true;
 } 

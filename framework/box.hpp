@@ -15,7 +15,7 @@ class Box: public Shape {
     double volume() const override;  //calculates the volume
     glm::vec3 getMax() const;
     glm::vec3 getMin() const;
-    //std::ostream& print(std::ostream& os) const override;
+    std::ostream& print(std::ostream& os) const override;
      ~Box() override;
      //~Box();
      bool intersect (Ray const& ray, float& t) const override;
